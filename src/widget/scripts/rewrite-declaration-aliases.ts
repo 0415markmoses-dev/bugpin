@@ -1,6 +1,8 @@
 import { dirname, relative, resolve, sep } from 'path';
+import { fileURLToPath } from 'node:url';
 
-const declarationRoot = resolve(import.meta.dir, '../dist');
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const declarationRoot = resolve(__dirname, '../dist');
 const declarationFiles = await Array.fromAsync(
   new Bun.Glob('**/*.d.ts').scan({ cwd: declarationRoot, absolute: true })
 );

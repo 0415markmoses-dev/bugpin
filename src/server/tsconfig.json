@@ -24,7 +24,7 @@
     "declarationMap": true,
     "outDir": "../../dist/server",
     "rootDir": "..",
-    "types": ["bun-types"],
+    "types": ["bun"],
     "paths": {
       "@shared/*": ["../shared/*"]
     }

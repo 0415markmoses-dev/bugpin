@@ -2,6 +2,7 @@ import { Database } from 'bun:sqlite';
 import * as fs from 'fs';
 import * as path from 'path';
 import { config } from '../config.js';
+import { getDirname } from '../runtime.js';
 import { logger } from '../utils/logger.js';
 
 let db: Database | null = null;
@@ -446,7 +447,7 @@ export async function runMigrations(): Promise<void> {
   const appliedNames = new Set(applied.map((m) => m.name));
 
   // Get migration files
-  const migrationsDir = path.join(import.meta.dir, 'migrations');
+  const migrationsDir = path.join(getDirname(import.meta.url), 'migrations');
   if (!fs.existsSync(migrationsDir)) {
     logger.info('No migrations directory found, skipping migrations');
     return;

@@ -4,10 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import { readFileSync } from 'fs';
 import { defineConfig } from 'vitest/config';
+import { fileURLToPath } from 'node:url';
 
-const packageJson = JSON.parse(
-  readFileSync(path.resolve(import.meta.dirname, '../../package.json'), 'utf-8')
-);
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const packageJson = JSON.parse(readFileSync(path.resolve(__dirname, '../../package.json'), 'utf-8'));
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -19,7 +19,7 @@ export default defineConfig({
   publicDir: 'public',
   resolve: {
     alias: {
-      '@shared': path.resolve(import.meta.dirname, '../shared'),
+      '@shared': path.resolve(__dirname, '../shared'),
     },
   },
   build: {

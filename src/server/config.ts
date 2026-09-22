@@ -2,10 +2,12 @@ import { z } from 'zod';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as crypto from 'crypto';
+import { getDirname } from './runtime.js';
 
 // Read version from root package.json (single source of truth)
 // Uses synchronous read to avoid top-level await, which breaks require() in the EE loader
-const packageJsonPath = path.join(path.resolve(import.meta.dir, '../..'), 'package.json');
+const projectRoot = getDirname(import.meta.url);
+const packageJsonPath = path.join(path.resolve(projectRoot, '../..'), 'package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 const VERSION: string = packageJson.version;
 
@@ -55,7 +57,7 @@ function loadConfig() {
   const isTest = nodeEnv === 'test';
 
   // Project root is 2 directories up from src/server/config.ts
-  const projectRoot = path.resolve(import.meta.dir, '../..');
+  const projectRoot = path.resolve(getDirname(import.meta.url), '../..');
 
   // Default data directory is at project root, not relative to server
   const dataDir = process.env.DATA_DIR || path.join(projectRoot, 'data');

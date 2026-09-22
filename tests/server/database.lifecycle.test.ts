@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'bun:test'
 import * as fs from 'fs';
 import * as path from 'path';
 import { tmpdir } from 'os';
+import { fileURLToPath } from 'node:url';
 import { config } from '../../src/server/config';
 import {
   closeDatabase,
@@ -14,7 +15,7 @@ import {
 
 const originalConfig = { ...config };
 let tempDir = '';
-const migrationsDir = path.resolve(import.meta.dir, '../../src/server/database/migrations');
+const migrationsDir = path.resolve(fileURLToPath(new URL('../../src/server/database/migrations', import.meta.url)));
 
 beforeAll(async () => {
   tempDir = fs.mkdtempSync(path.join(tmpdir(), 'bugpin-db-'));

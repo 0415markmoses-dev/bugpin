@@ -2,13 +2,16 @@ import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   plugins: [preact(), tailwindcss()],
   root: '.',
   resolve: {
     alias: {
-      '@shared': path.resolve(import.meta.dirname, '../shared'),
+      '@shared': path.resolve(__dirname, '../shared'),
     },
   },
   build: {
