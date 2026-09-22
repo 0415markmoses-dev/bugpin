@@ -50,7 +50,8 @@
     "build:watch": "vite build --watch",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "vercel-build": "echo 'Widget package is not deployed to Vercel; admin build is handled by the root app.'"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
