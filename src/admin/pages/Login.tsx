@@ -77,7 +77,7 @@ export function Login() {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email address</Label>
+              <Label htmlFor="email">Username</Label>
               <Input
                 id="email"
                 type="email"
