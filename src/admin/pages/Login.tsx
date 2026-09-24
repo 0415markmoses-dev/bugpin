@@ -81,8 +81,10 @@ export function Login() {
               <Input
                 id="email"
                 type="email"
-                autoComplete="email"
-                placeholder="you@example.com"
+                name="email"
+                autoComplete="username"
+                placeholder="Username"
+                spellCheck={false}
                 {...register('email')}
                 aria-invalid={!!errors.email}
               />
@@ -94,8 +96,9 @@ export function Login() {
               <Input
                 id="password"
                 type="password"
+                name="password"
                 autoComplete="current-password"
-                placeholder="Enter your password"
+                placeholder="Password"
                 {...register('password')}
                 aria-invalid={!!errors.password}
               />
